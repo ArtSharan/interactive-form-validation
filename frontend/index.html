@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-image: url(https://wallpapercave.com/wp/wp12373614.jpg);
+            background-position: center;
+        }
+
+        input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border: none;
+            border-bottom: 2px solid #4b4b4b !important;
+            box-shadow: none;
+        }
+
+        .form-control,
+        .form-select,
+        button {
+            border-bottom: 1px solid rgb(255, 255, 255) !important;
+        }
+
+        .form-control:hover,
+        .form-select:hover,
+        button:hover {
+            border-bottom: 1px solid rgb(111, 111, 111) !important;
+        }
+
+        pre {
+            font-size: 0.8rem;
+        }
+
+        #newAccountBox {
+            opacity: 80%;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.349);
+            transition: opacity 0.4s, box-shadow 0.4s;
+        }
+
+        #newAccountBox:hover {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.601);
+            opacity: 100%;
+        }
+
+        #form_box {
+            width: 60%;
+        }
+
+        button {
+            background-image: linear-gradient(60deg, rgba(119, 0, 119, 0.575), rgb(255, 234, 149));
+        }
+
+        @media (max-width: 850px) {
+            #image_box {
+                display: none;
+            }
+
+            #form_box {
+                color: white;
+                border-radius: 15px;
+                width: 100%;
+                backdrop-filter: blur(8px);
+                background-color: rgba(0, 0, 0, 0.379);
+                background-image: url(https://s-media-cache-ak0.pinimg.com/736x/c2/b6/da/c2b6da003226632ed62e816df94d13b2.jpg);
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: cover;
+            }
+
+            #form_box input,
+            #form_box select {
+                color: white;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            #form_box ::placeholder {
+                color: rgb(255, 255, 255);
+            }
+
+            #form_box .form-control,
+            #form_box .form-select {
+                backdrop-filter: blur(3px);
+                background-color: rgba(0, 0, 0, 0.4) !important;
+                color: white;
+            }
+
+            #form_box h1 {
+                color: white !important;
+            }
+
+            .form-control,
+            .form-select,
+            button {
+                border-bottom: 2px solid rgba(255, 255, 255, 0) !important;
+            }
+
+            .form-control:hover,
+            .form-select:hover,
+            button:hover {
+                border-bottom: 2px solid rgb(255, 255, 255) !important;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            input {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid p-5 d-flex justify-content-center align-items-center">
+        <div id="newAccountBox" class="container-fluid d-flex w-75 m-0 p-0 rounded-4 bg-white">
+            <div id="image_box" class="container rounded-start-4 align-content-center"
+                style="background-image: url(https://s-media-cache-ak0.pinimg.com/736x/c2/b6/da/c2b6da003226632ed62e816df94d13b2.jpg);
+                       background-repeat: no-repeat; background-position: center center; width: 40%; background-size: cover;">
+                <h2 class="text-white text-center">Welcome</h2>
+            </div>
+
+            <div id="form_box" class="container p-5 m-0">
+                <div class="container-fluid text-center mb-4">
+                    <h1 class="text-secondary">Create Account</h1>
+                    <hr>
+                </div>
+
+                <form class="d-flex flex-column">
+                    <!-- First and Second Name -->
+                    <div class="row text-end align-items-center">
+                        <div class="col">
+                            <div id="name_box" class="container-fluid d-flex justify-content-center p-0">
+                                <input type="text" id="first_name" class="form-control border-0 rounded-5 bg-light w-50 me-2"
+                                    placeholder="First Name" onkeyup="nameCheck(this.value)" maxlength="15">
+                                <input type="text" id="second_name" class="form-control border-0 rounded-5 bg-light w-50"
+                                    placeholder="Second Name" onkeyup="nameCheck(this.value)" maxlength="15">
+                            </div>
+                            <pre class="ps-5 text-start text-danger" id="fst_name_valid"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Department -->
+                    <div class="row text-end align-items-center">
+                        <div class="col">
+                            <div id="dep_box">
+                                <select id="dep" class="form-select bg-light rounded-5 border-0">
+                                    <option value="" disabled selected>Department</option>
+                                    <option>CSE</option>
+                                    <option>ECE</option>
+                                    <option>EEE</option>
+                                    <option>MECH</option>
+                                    <option>IT</option>
+                                    <option>CIVIL</option>
+                                </select>
+                            </div>
+                            <pre class="ps-5 text-start text-danger" id="dep_valid"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="row text-end align-items-center">
+                        <div class="col">
+                            <div id="user_box">
+                                <input type="text" id="user" class="form-control border-0 bg-light rounded-5"
+                                    placeholder="Username" onblur="checkUsernameAvailability(this.value)">
+                            </div>
+                            <pre class="ps-5 text-start text-danger" id="user_valid"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="row text-end align-items-center">
+                        <div class="col">
+                            <div id="pass_box">
+                                <input type="password" id="pass" class="form-control border-0 bg-light rounded-5"
+                                    placeholder="Password" data-bs-toggle="tooltip" title="8 characters needed!"
+                                    onblur="valueCheck()" onkeyup="passCheck(this.value)">
+                            </div>
+                            <pre class="ps-5 text-start text-danger" id="pass_valid"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="row text-end align-items-center">
+                        <div class="col">
+                            <div id="confPass_box" class="input-group">
+                                <input type="password" id="conf_pass" class="form-control rounded-5 border-0 bg-light"
+                                    placeholder="Confirm Password">
+                            </div>
+                            <pre class="ps-5 text-start text-danger" id="confPass_valid"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="row text-end mb-3 align-items-center">
+                        <div class="col">
+                            <div id="email_box" class="input-group">
+                                <input type="text" id="email" class="form-control bg-light rounded-5 border-0"
+                                    placeholder="Email" data-bs-toggle="tooltip" title="'@gmail.com' format needed!">
+                            </div>
+                            <pre class="ps-5 text-start text-danger" id="email_valid"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Contact -->
+                    <div class="row text-end align-items-center">
+                        <div class="col">
+                            <div id="contact_box" class="input-group col">
+                                <input type="number" id="contact" class="form-control rounded-5 bg-light border-0"
+                                    placeholder="Contact">
+                            </div>
+                            <pre class="ps-5 text-start text-danger" id="contact_valid"></pre>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="container-flex d-flex justify-content-center pt-4">
+                        <button onclick="handleSubmit(event)" type="button"
+                            class="btn w-75 text-white rounded-5 border-0">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="warningModal">
+        <div class="modal-dialog p-5">
+            <div class="modal-content p-3">
+                <div class="modal-body p-3">
+                    <div class="d-flex">
+                        <i class="fa-solid fa-circle-exclamation fs-1 text-secondary align-content-center me-3"></i>
+                        <p>The password should contain alphabets, numbers and symbols within 8 characters.</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Name, Password, Success Modals -->
+    <div class="modal" id="nameModal">
+        <div class="modal-dialog p-5">
+            <div class="modal-content p-3">
+                <div class="modal-body p-3">
+                    <div class="d-flex">
+                        <i class="fa-solid fa-circle-exclamation fs-1 text-secondary align-content-center me-3"></i>
+                        <p>Maximum 15 characters allowed!</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="passModal">
+        <div class="modal-dialog p-5">
+            <div class="modal-content p-3">
+                <div class="modal-body p-3">
+                    <div class="d-flex">
+                        <i class="fa-solid fa-circle-exclamation fs-1 text-secondary align-content-center me-3"></i>
+                        <p>Maximum 8 characters allowed!</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="successModal">
+        <div class="modal-dialog p-5">
+            <div class="modal-content p-3">
+                <div class="modal-body p-3">
+                    <div class="d-flex">
+                        <i class="fa-solid fa-check fs-1 text-success align-content-center me-3"></i>
+                        <p>Account has been successfully created!</p>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-danger w-25" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Validation Script -->
+    <script src="./js/validation.js"></script>
+    <script src="./js/api.js"></script>
+</body>
+</html>
