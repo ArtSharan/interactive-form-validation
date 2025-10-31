@@ -1,7 +1,7 @@
 // =========================
 // API ENDPOINTS CONFIGURATION
 // =========================
-const BASE_URL = "https://interactive-form-validation.onrender.com"; // Update this if deployed (e.g., Render or Netlify)
+const BASE_URL = "https://interactive-form-validation.onrender.com/api";
 let usernameAvailable = false;
 // =========================
 // 1️⃣ CHECK USERNAME AVAILABILITY (runs when user moves to next field)
