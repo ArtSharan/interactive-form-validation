@@ -30,12 +30,26 @@ app.post("/api/submit-form", (req, res) => {
       }
     });
   }
-
+ 
+  
   // Save to JSON file
   users.push({ fullName, email, username, phone, department });
   fs.writeFileSync("./data/users.json", JSON.stringify(users, null, 2));
 
   res.json({ success: true, message: "Account stored successfully!" });
 });
-
+const path = require("path");
+  
+// ✅ View All Users
+app.get("/api/users", (req, res) => {
+  const filePath = path.join(__dirname, "data", "users.json");
+  try {
+    const data = fs.readFileSync(filePath, "utf-8");
+    const users = JSON.parse(data || "[]");
+    res.json(users);
+  } catch (error) {
+    console.error("Error reading users.json:", error);
+    res.status(500).json({ message: "Unable to read user data" });
+  }
+});
 app.listen(5000, () => console.log("Server running on http://localhost:5000"));
